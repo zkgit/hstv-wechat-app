@@ -1,0 +1,70 @@
+<import src="../../../common/template.wxml" />
+<import src="../../../style/dist/toast/index.wxml" />
+<import src="../../../style/dist/dialog/index.wxml" />
+
+<view class="head-block">
+  <image src="{{avatarUrl}}"></image>
+  <view class="cont" wx:if='{{hasLogin}}'>
+    <text class="t1 fwb">13663017649</text>
+    <text class="t2">绑定设备号：123456789</text>
+  </view>
+  <view class="cont" wx:if='{{!hasLogin}}'>
+    <text class="t1 fwb">未登录</text>
+    <text class="t2">无绑定设备</text>
+  </view>
+</view>
+
+<view class="content-title">
+  <text class="t1">电视院线产品包</text>
+  <!-- <text class="t2">收费协议</text> -->
+  <!-- <image class="img" src="/image/more_fr.png"></image> -->
+</view>
+
+<view class="content-block">
+  <view class="child psr {{selecteId==item.id?'active':''}}" wx:for="{{goodsList}}" bindtap='selectedItem' data-id='{{item.id}}' data-info='{{item.time+item.price}}'>
+    <text class='lab-left psa' wx:if='{{item.id==2}}'>包年价超值买</text>
+    <view class="left">
+      <text class="t1 show">{{item.time}}</text>
+      <text class="t2 zan-text-deleted show">原价{{item.oldPrice}}</text>
+    </view>
+    <view class="right">
+     <text class='cf5c'>￥</text>
+     <text class='fs48 cf5c fwb'>{{item.price}}</text>
+    </view>
+  </view> 
+</view> 
+
+<button class="order-button" bindtap='toBuy'>立即订购</button>
+
+<view class="toUse">
+  <text bindtap='toggleBottomPopup'>购买后如何使用</text>
+  <image src="/image/more_fr.png"></image>
+ </view>
+
+ <view class="buttom-block">
+  <text class="t1">产品包介绍</text>
+  <text class="t2">“电视院线”开启全新家庭院线模式，网罗国内、国外院线大片，更有全网首播、独播影片独家奉献，以及紧跟热点的精彩专题，让您足不出户尽享高清视觉大餐。</text>
+ </view>
+
+<!--底部遮罩层  -->
+<view class="popup-example--bottom zan-popup zan-popup--bottom {{ showBottomPopup ? 'zan-popup--show' : ''}}">
+    <view class="zan-popup__mask" catchtap="toggleBottomPopup"></view>
+    <view class="zan-popup__container" wx:if="showPopup">
+    <view class='pop-block'>
+      <view class='title psr'>
+      <text class='fs30 pl30 pt30 psa lh1'>↓  使用说明  ↓</text>
+      <image class='close' src='/image/close_icon.png' catchtap="toggleBottomPopup"></image>
+      </view>
+      <view class='cont'>
+        <text class='t1'>1.请确保您家有歌华有线高清机顶盒呦！</text>
+        <text class='t1'>2.购买成功后，您就可以直接在电视上观看“电视院线”里的影片啦！请一定在有效期之内观影呦！</text>
+        <text class='t1'>3.如果您觉得在电视上搜索影片不太方便，还可以在小程序“片库”里直接搜索呢！之后通过绑定机顶盒，就可以一键推屏到电视上观看啦！具体方法如下：</text>
+        <text class='t2'>(1)打开电视端首页-生活-云飞视，请您在二维码下方找到“绑定码”；</text>
+        <text class='t2'>(2)找到右下方“我的”-“我的设备”，输入绑定码，将手机和电视机顶盒连接，这样你就可以将“片库”里的影片推屏到电视上观看喽！</text>
+      </view>
+    </view>
+  </view>
+</view>
+
+<template is="zan-dialog" data="{{ zanDialog }}"></template>
+<template is="zan-toast" data="{{ zanToast }}"></template>

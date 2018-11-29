@@ -1,0 +1,12 @@
+
+<view class='back-content'>
+ <view class='child'>
+   <image src=''></image>
+   <view class='cont'>
+    <text class='fs30 pb20 show lh1 ellipsis'>北京卫视</text>
+    <text class='fs26 pb20 show lh1 c33 ellipsis'>品质剧场：归去来</text>
+    <text class='fs26 show lh1 c99 ellipsis'>5.26 13:20-15:10</text>
+   </view>
+  <button class='push-button'>推屏</button>
+ </view>
+</view>

@@ -1,0 +1,64 @@
+<import src="../../../style/dist/loadmore/index.wxml" />
+<import src="../../../style/dist/tab/index.wxml" />
+<import src="../../../style/dist/dialog/index.wxml" />
+
+<view wx:if='{{haveList}}'>
+  <view class='zan-row list-top z9'>
+    <view class="zan-col zan-col-2 zan-col-offset-10 fs30 alic" bindtap='deletefcn'>{{checkbable?'编辑':'编辑'}}</view>
+  </view>
+  <!-- 频道模块 -->
+    <view class='lsit' wx:if="{{tabType=='live'}}">
+    <!-- <view wx:for='{{lists}}' wx:key="{{index}}"> -->
+    <view>
+      <view class='c66 fs30 fwb pt10' wx:if='{{item.today}}'>今天</view>
+      <view class='fs30 fwb c66' wx:if='{{item.yesterday}}'>昨天</view>
+      <view class='fs30 fwb c66' wx:if='{{item.earlier}}'>更早</view>
+      <view class='zan-row listbox mt20'>
+        <view class='zan-col zan-col-4 alic cf5c' wx:if="{{checkbable}}" bindtap="checkboxChange" data-index="{{index}}">
+          <view class="zan-icon alic {{item.ischeck?'zan-icon-checked':'zan-icon-check'}}"></view>
+        </view>
+        <view class="img-box zan-col zan-col-7 alic">
+          <navigator url="../detail-db/detail-db?id={{item.entityId}}&columnType={{item.videoType}}" wx:if="{{item.type==0}}">
+            <image src="{{item.image}}" mode="widthFix" class="img" />
+          </navigator>
+          <navigator url="../detail-zb/detail-zb?channelId={{item.entityId}}" wx:if="{{item.type!=0}}">
+            <image src="{{item.image}}" mode="widthFix" class="img" />
+          </navigator>
+        </view>
+        <view class="zan-col zan-col-16">
+          <!-- 频道 -->
+          <view class='ml30'>
+          <!-- 回看标志 -->
+            <!-- <view class="lb1">回看</view> -->
+          <!-- 回看结束标志 -->
+            <!-- <view class='lb2'>回看结束</view> -->
+            <view class="fs30 lh1 pt20 mb20 c33 clamp2">{{item.channelName?item.channelName:'新舞林大会2018'}}</view>
+            <view class='dflex psr'>
+              <text class="fs22 ellipsis wp70 cbb lh1">已观看至01:32:18{{item.title}}</text>
+            </view>
+            <view class="fs20 ellipsis c99 pt20">{{item.addTime}}</view>
+          </view>       
+        </view>
+      </view>
+    </view>
+  </view>
+  
+<!-- 底部选择模块 -->
+  <view class='editline z10' wx:if='{{checkbable}}'>
+    <view class='zan-row'>
+      <view class="zan-col zan-col-8  fs30 alic" bindtap='cancel'>取消</view>
+      <view class="zan-col zan-col-8 fs30 alic" bindtap='allcheck'>{{isallcheck?'取消全选':'全选'}}</view>
+      <view class="zan-col zan-col-8 fs30 alic icon-color" bindtap='deleteButton'>删除{{deleteNum>0?'('+deleteNum+')':''}}</view>
+    </view>
+  </view>
+</view>
+
+<template is="zan-dialog" data="{{ zanDialog }}"></template>
+<template is="zan-loadmore" data="{{ nodata}}" />
+<template is="zan-loadmore" data="{{ loading}}"></template>
+
+<!-- 无列表信息时显示模块 -->
+<view class='null-list' wx:if="{{!haveList}}">
+  <text class='t1'>暂无历史纪录</text>
+  <text class='t2'>快去开始您的观影之旅吧！</text>
+</view>

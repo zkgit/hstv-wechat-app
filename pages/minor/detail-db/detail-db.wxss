@@ -1,0 +1,212 @@
+/* pages/minor/detail-db/detail-db.wxss */
+
+page {
+  /* padding-bottom: 98rpx; */
+}
+
+video {
+  width: 100%;
+  height: 422rpx;
+}
+
+.pop-info-block {
+  height: 805rpx;
+  width: 750rpx;
+}
+
+.pop-info-block .desc {
+  box-sizing: border-box;
+  border-bottom: 1px solid #eee;
+  padding: 0 20rpx 20rpx;
+}
+
+.pop-info-block .descInfo {
+  box-sizing: border-box;
+  padding: 20rpx;
+}
+
+.pop-info-block .descInfo scroll-view {
+  height: 470rpx;
+}
+
+/* 弹窗剧集 */
+
+.pop-block .close {
+  width: 24rpx;
+  height: 24rpx;
+  float: right;
+  margin-right: 48rpx;
+  margin-top: 30rpx;
+}
+
+.pop-block .scropare {
+  height: 784rpx;
+  width: 100%;
+}
+
+.pop-block .tab-bar {
+  /* display: inline-block; */
+  margin: 0 18rpx 20rpx;
+  height: 114rpx;
+  width: 114rpx;
+  background: #f5f5f5;
+  text-align: center;
+  line-height: 114rpx;
+  border-radius: 12rpx;
+}
+
+.pop-block .tab-bar-arts {
+  margin: 0 18rpx 20rpx;
+  height: 150rpx;
+  width: 300rpx;
+  background: #f5f5f5;
+  border-radius: 12rpx;
+  /* padding: 20rpx; */
+  box-sizing: border-box;
+}
+
+.pop-block .tab-bar-arts .desc {
+  height: 106rpx;
+  width: 244rpx;
+  line-height: 36rpx;
+  display: -webkit-box;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pop-block .drambox:after {
+  flex: auto;
+  content: "";
+}
+
+/* component/detail_des.wxss */
+
+.detail {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  border-bottom: 1px solid #eee;
+}
+
+.detail .df_bg {
+  filter: blur(20px);
+  width: 100%;
+  height: 422rpx;
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.detail .detail_info {
+  height: 171rpx;
+  width: 100%;
+  padding: 0 20rpx;
+  box-sizing: border-box;
+}
+
+.detail .info_right {
+  color: #888;
+  /* width: 575rpx; */
+  font-size: 26rpx;
+}
+
+.detail .info_right .title {
+  font-size: 34rpx;
+  font-weight: bold;
+}
+
+.detail .info_right .actor {
+  line-height: 44rpx;
+  height: 44rpx;
+  overflow: hidden;
+}
+
+.detail .info_right .director {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.detail .info_right .tag text {
+  padding: 0 2rpx;
+}
+
+.detail .detail_info .btn_user {
+  position: absolute;
+  width: 180rpx;
+  height: 88rpx;
+  top: 0;
+  right: 20rpx;
+  display: flex;
+}
+
+.detail .detail_info .btn_user .collect {
+  flex: 1;
+  position: relative;
+}
+
+.detail .detail_info .btn_user .collect image {
+  width: 36rpx;
+  position: absolute;
+  left: 50%;
+  top: 30%;
+  transform: translate(-50%, -30%);
+}
+
+.detail .detail_info .btn_user .share image {
+  width: 32rpx;
+  position: absolute;
+  left: 50%;
+  top: 29%;
+  transform: translate(-50%, -29%);
+}
+
+.detail .detail_info .btn_user .share {
+  flex: 1;
+  position: relative;
+}
+
+.detail .detail_info .btn_user .share button {
+  box-sizing: border-box;
+  padding: 0;
+  width: 40rpx;
+  height: 40rpx;
+  position: absolute;
+  left: 50%;
+  top: 29%;
+  transform: translate(-50%, -29%);
+}
+
+.order-button {
+  width: 710rpx;
+  height: 88rpx;
+  margin: 25rpx auto;
+  background: linear-gradient(to right, rgb(255, 126, 82), rgb(244, 83, 53));
+  font-size: 30rpx;
+  text-align: center;
+  color: #ffff;
+  line-height: 3;
+  border-radius: 6rpx;
+}
+
+/* 综艺剧集 */
+
+
+.his-scroll-block .child {
+  width: 300rpx;
+  height: 250rpx
+}
+
+.his-scroll-block .child image {
+  width: 300rpx;
+  height: 170rpx;
+}
+
+.his-scroll-block .child .t1 {
+  bottom: 84rpx;
+  right: 6rpx;
+}

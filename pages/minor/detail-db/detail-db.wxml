@@ -1,0 +1,181 @@
+<import src="../../../style/dist/toast/index.wxml" />
+<import src="../../../style/dist/dialog/index.wxml" />
+<import src="/common/template.wxml" />
+<!-- 视频 -->
+<view>
+  <video id="myVideo" src="https://m.v.qq.com/x/cover/2/2iqrhqekbtgwp1s.html?vid=c01350046ds" danmu-list="{{danmuList}}" objectFit='fill' poster="{{detail.image}}" enable-danmu danmu-btn show-center-play-btn></video>
+</view>
+<button class="order-button" bindtap='playtv'>推送到电视播放</button>
+<!-- 详情信息 -->
+<view class='detail detail_db'>
+  <view class='detail_info'>
+    <view class='info_right'>
+      <view class='c00 fs34 fwb pb20'>{{detail.title}}</view>
+      <view class='director ellipsis'>
+        <text class='show ellipsis wp90' wx:if="{{options.columnType=='film'}}">导演：{{detail.director}}
+</text>
+        <text class='show ellipsis wp90' wx:if="{{options.columnType=='tv'}}">更新至11集/共120集</text>
+        <text class='show ellipsis wp90' wx:if="{{options.columnType!='tv'&& options.columnType!='film'}}">更新至2018-07-02</text>
+      </view>
+      <view class='actor pt5' bindtap='openInfoPopup'>
+        <text class='show ellipsis wp90 fl'>主演：{{detail.actor}}</text>
+        <view class="zan-icon zan-icon-arrow fs20 fr"></view>
+      </view>
+    </view>
+    <view class='btn_user'>
+      <view class='collect {{mystate.is_collect?"c":""}}' bindtap='_collect'>
+        <image src='{{mystate.is_collect?"/image/collect_press.png":"/image/collect.png"}}' mode="widthFix"></image>
+      </view>
+      <view class='share'>
+        <button open-type="share" hover-class="none">
+          <image src='{{is_share?"/image/share_press.png":"/image/share.png"}}' mode="widthFix"></image>
+        </button>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 电视剧选集列表 -->
+<view wx:if="{{options.columnType!='film'}}" class='tvdrama cf'>
+  <view wx:if="{{options.columnType=='tv'|| options.columnType == 'anime'}}">
+    <view class='zan-row fjbetween  dflex fcenter' bindtap='openPopup'>
+      <view class="zan-col zan-col-3">
+        <template is="iti_tittle" data="{{iti_tittle:'选集'}}" />
+      </view>
+      <view class="zan-col zan-col-9 zan-col-offset-9 fs26 c88 alir "></view>
+      <view class=" zan-icon zan-icon-arrow fs20 c88"></view>
+    </view>
+    <scroll-view class="ml20 wp100 fs30" scroll-x>
+      <view class='fjbetween dlflex fcenter '>
+        <view class="tab-bar {{index==1?'cf5':''}}" wx:for="{{fadedmt}}" bindtap='goplay' data-index='{{index}}'>
+          {{item.volumnCount}}
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+  <!-- 综艺选集列表 -->
+  <view wx:if="{{(options.columnType=='arts'|| options.columnType == 'documentary')&&fadedmt}}">
+    <view class='zan-row fjbetween  dflex fcenter' bindtap='openPopup'>
+      <view class="zan-col zan-col-3 ">
+        <template is="iti_tittle" data="{{iti_tittle:'选集'}}" />
+      </view>
+      <view class="zan-col zan-col-9 zan-col-offset-9 fs26 c88 alir"></view>
+      <view class=" zan-icon zan-icon-arrow fs20 c88"></view>
+    </view>
+    <scroll-view scroll-x class='his-scroll-block'>
+      <view class='dflex  '>
+        <view class='psr pl20 child' wx:for="{{fadedmt}}" bindtap='goplay' data-index='{{index}}'>
+          <navigator hover-class="none">
+            <image src='{{detail.image}}'></image>
+            <view class='fs22 ellipsis psa t1 cff'>第{{item.volumnCount}}期</view>
+            <view class='psa fs30  ellipsis lh1 wp90'>{{item.name}}</view>
+            <view class='psa fs26 c88 ellipsis lh1  b0 wp90'>张一山暴力“坐扁”王俊凯</view>
+          </navigator>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+</view>
+<!-- 底部弹窗信息 -->
+<view class=" zan-popup zan-popup--bottom {{ showInfoPopup ? 'zan-popup--show' : ''}}">
+  <view class="zan-popup__mask" catchtap="toggleInfoPopup"></view>
+  <view class="zan-popup__container" wx:if="showInfoPopup">
+    <view class='pop-info-block'>
+      <view class='zan-row dflex fcenter'>
+        <view class="zan-col zan-col-18">
+          <template is="iti_tittle" data="{{iti_tittle:detail.title}}" />
+        </view>
+        <image class='zan-col zan-col-1 zan-col-offset-4 img' src='/image/close_icon.png' mode="widthFix" catchtap="toggleInfoPopup"></image>
+      </view>
+      <view class='desc'>
+        <view class='zan-row pb10'>
+          <view class="zan-col zan-col-9  fs26 c88" wx:if="{{options.columnType=='tv'}}">
+            更新至：{{dmtotalrecords}}集/共120集
+          </view>
+          <view class="zan-col zan-col-9  fs26 c88" wx:if="{{options.columnType!='tv'&& options.columnType!='film'}}">
+            更新至{{dmtotalrecords}}期
+          </view>
+        </view>
+        <view class='zan-row pb10'>
+          <view class='zan-col zan-col-12  fs26 c88 ellipsis '>
+            类型：
+            <text wx:for="{{detail.tags}}">{{item}}</text>
+          </view>
+          <view class='zan-col zan-col-10 zan-col-offset-1  fs26 c88 ellipsis '>
+            年份：{{detail.year}}
+          </view>
+        </view>
+        <view class='zan-row pb10'>
+          <view class='zan-col zan-col-12  fs26 c88 ellipsis '>导演：{{detail.director}}</view>
+          <view class='zan-col zan-col-10  zan-col-offset-1 fs26 c88 ellipsis '>
+            地区：{{detail.year}}
+          </view>
+        </view>
+        <view class='zan-row pb10'>
+          <view class='zan-col zan-col-24 fs26 c88  '>主演：{{detail.actor}}</view>
+        </view>
+      </view>
+      <view class='descInfo'>
+        <view class='zan-row pb10'>
+          <view class='zan-col zan-col-12  fs26 c88 ellipsis '>内容简介</view>
+        </view>
+        <scroll-view scroll-y>
+          <text class='fs26 c88'>{{detail.description}}</text>
+        </scroll-view>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 底部弹窗剧集 -->
+<view class="popup-example--bottom zan-popup zan-popup--bottom {{ showPopup ? 'zan-popup--show' : ''}}">
+  <view class="zan-popup__mask" catchtap="togglePopup"></view>
+  <view class="zan-popup__container" wx:if="showPopup">
+    <view class='pop-block'>
+      <view wx:if="{{options.columnType!='film'}}" class='cf'>
+        <view wx:if="{{options.columnType=='tv'|| options.columnType == 'anime'}}">
+          <view class='zan-row   dflex fcenter'>
+            <view class="zan-col zan-col-3">
+              <template is="iti_tittle" data="{{iti_tittle:'选集'}}" />
+            </view>
+            <view class="zan-col zan-col-9  fs26 c88  ">·更新至：{{dmtotalrecords}}集/共120集</view>
+            <image class='zan-col zan-col-1 zan-col-offset-9 img' src='/image/close_icon.png' mode="widthFix" catchtap="togglePopup"></image>
+          </view>
+          <scroll-view class="wp100 fs30 scropare" scroll-y>
+            <view class='fstart dflex fcenter fwrap fjbetween drambox'>
+              <view class="tab-bar {{index==1?'cf5':''}}" wx:for="{{fadedmt}}" bindtap='goplay' data-index='{{index}}'>
+                {{item.volumnCount}}
+              </view>
+            </view>
+          </scroll-view>
+        </view>
+        <view wx:if="{{(options.columnType=='arts'|| options.columnType == 'documentary')&&fadedmt}}">
+          <view class='zan-row fjbetween  dflex fcenter' bindtap='openPopup'>
+            <view class="zan-col zan-col-3  ">
+              <template is="iti_tittle" data="{{iti_tittle:'选集'}}" />
+            </view>
+            <view class="zan-col zan-col-9  fs26 c88 "></view>
+            <image class='zan-col zan-col-1 zan-col-offset-9 img' src='/image/close_icon.png' mode="widthFix" catchtap="togglePopup"></image>
+          </view>
+          <scroll-view class="wp100  scropare" scroll-y>
+            <template is="listDbItiTempalte" data="{{_list:tjlist}}" />
+          </scroll-view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<template is="zan-dialog" data="{{ zanDialog }}"></template>
+<!-- 相关推荐 -->
+<view wx:if="{{tjlist}}">
+  <template is="iti_tittle" data="{{iti_tittle:'猜你喜欢'}}" />
+  <template is="listSmalldb" data="{{_list:tjlist,iszb:false}}" wx:if="{{(options.columnType!='arts'&& options.columnType != 'documentary')}}" />
+  <view wx:if="{{(options.columnType=='arts'|| options.columnType == 'documentary')}}">
+    <template is="listDbItiTempalte" data="{{_list:tjlist}}" />
+  </view>
+</view>
+<!-- 返回首页 -->
+<template is="btn_backhome" data="{{ backhome }}"></template>
+<!-- <view class='dbmbplay cff fs30' bindtap='playmb'>手机观看</view> -->
+<template is="zan-dialog" data="{{ zanDialog }}"></template>
+<template is="zan-toast" data="{{ zanToast }}"></template>
+<!-- 遥控器 -->
+<partremote _wid_pro='55' _left_pro='10' _top_pro='10' _bottom_pro='10'></partremote>

@@ -1,0 +1,7 @@
+.page-block{border-top:1rpx solid #eee}
+.page-block .label{width: 192rpx;height: 48rpx;border-radius: 0 8rpx 0 8rpx;line-height: 48rpx;color: #fff;text-align: center} 
+.page-block .cont{height:62rpx;line-height:32rpx;}
+.page-block .label1{background-color: #f45935;margin: 60rpx 0 20rpx 30rpx}
+.page-block .label2{background-color: #2bac56;margin: 38rpx 0 20rpx 30rpx}
+.page-block .bottom-block{width:690rpx;margin:88rpx auto;}
+.page-block .bottom-block image{width:690rpx;height:388rpx}

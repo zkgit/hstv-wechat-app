@@ -1,0 +1,142 @@
+/* pages/mine/mine.wxss */
+
+page {
+  background: #fff;
+}
+
+.user-head {
+  position: relative;
+  top: 0;
+  height: 276rpx;
+  width: 100%;
+}
+
+.user-head-bg {
+  height: 498rpx;
+  width: 100%;
+  filter: blur(14px);
+}
+
+.user-head-bg-box {
+  height: 276rpx;
+  width: 100%;
+  overflow: hidden;
+  background-color: #fff;
+}
+
+.user-head-info {
+  position: absolute;
+  top: 40rpx;
+  width: 100%;
+  text-align: center;
+}
+
+.user-head-info .to-login {
+  width: 9rpx;
+  height: 18rpx;
+  color: #000;
+  margin-left: 20rpx;
+}
+
+.user-head-logo {
+  height: 128rpx;
+  width: 128rpx;
+  border-radius: 50%;
+  margin-bottom: 10px;
+  /* border: 1px solid #fff; */
+}
+
+.user-head-name {
+  text-align: center;
+  font-size: 34rpx;
+  /* color: #fff; */
+}
+
+.user-nav-center {
+  display: flex;
+  height: 180rpx;
+  background: #fff;
+  box-shadow: 0px 2px 2px rgba(173, 173, 173, 0.2);
+}
+
+.user-nav-flx {
+  flex: 1;
+  text-align: center;
+}
+
+.user-nav-flx image {
+  width: 41rpx;
+  height: 54rpx;
+  margin-top: 40rpx;
+}
+
+.user-nav-flx text {
+  font-size: 28rpx;
+}
+
+.my-mt0 {
+  margin-top: 0 !important;
+  /* border-top: 1rpx solid #eee; */
+}
+.his-block{
+  height: 90rpx !important;
+  line-height: 90rpx !important;
+  position:relative;
+}
+
+.his-scroll-block{background:linear-gradient(to bottom,#fcfcfc,#f5f5f5);}
+.his-scroll-block .child{width:300rpx;height:250rpx}
+.his-scroll-block .child image{width:300rpx;height:170rpx;}
+.his-scroll-block .child .t1{bottom:84rpx;right:6rpx;}
+
+.user-nav-bottom1 .his-block .image_more{
+  width: 74rpx;
+  height: 16rpx;
+  position: absolute;
+  top: 36rpx;
+  right: 0;
+}
+
+.user-nav-bottom1 {
+  width: 100%;
+  margin-top: 20rpx;
+  background: #fff;
+  font-size: 32rpx;
+}
+
+.user-nav-bottom1 .image_icon {
+  width: 74rpx;
+  height: 33rpx;
+  position: absolute;
+  top: 38rpx;
+}
+
+.user-nav-bottom1 .image_more {
+  width: 74rpx;
+  height: 16rpx;
+  position: absolute;
+  top: 58rpx;
+  right: 0;
+}
+
+.user-nav-bottom1 text {
+  margin-left: 30rpx;
+}
+
+.user-nav-hit {
+  height: 130rpx;
+  line-height: 130rpx;
+  position: relative;
+}
+
+.nav-line {
+  height: 1rpx;
+  border-bottom: 1rpx solid #e6e6e6;
+}
+
+.his-bottom-line{border-bottom:1rpx solid #eee;background-color:#fff;margin: 0 auto;}
+.his-bottom-line1{height:12rpx;border-radius:0 0 30rpx 30rpx;}
+.his-bottom-line2{height:8rpx;border-radius:0 0 24rpx 24rpx;}
+.his-bottom-line3{height:4rpx;border-radius:0 0 28rpx 28rpx;}
+
+.block-bold-line{height: 16rpx;width: 100%;background-color: #f5f7f9}

@@ -1,0 +1,15 @@
+
+<view class='page-block'>
+
+  <text class='show label fs26 label1'>未安装的用户</text>
+  <view class='fs24 pl30 cont'>请在<text class='fwb fs28'>电视端</text>的应用商城下载<text class='fwb fs28'>“华数TV”</text>电视客户端并打开，找到首页对应扫码绑定入口，使用微信扫码绑定。</view>
+
+  <text class='show label fs26 label2'>已安装的用户</text>
+  <view class='fs24 pl30 cont'>安装了华数TV客户端的智能电视/盒子，可以在<text class='fwb fs28'>首页</text>对应扫码<text class='fwb fs28'>绑定入口</text>，使用微信扫码绑定。</view>
+
+  <view class='bottom-block'>
+    <image></image>
+    <text class='fs24 c88 alic show wp100'>从华数TV电视客户端首页“我的”进入微信扫码页面,完成绑定</text>
+  </view>
+
+</view>

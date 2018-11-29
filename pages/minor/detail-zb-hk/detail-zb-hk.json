@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "partremote": "/component/partremote/partremote",
+    "detail_des": "/component/detail_des/detail_des"
+  }
+}

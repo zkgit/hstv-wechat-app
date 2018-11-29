@@ -1,0 +1,182 @@
+<import src="../../common/template.wxml" />
+
+<!-- <template is="loadings" data="{{loading,loadtxt}}" />  -->
+
+<!-- 没有网络时显示模块 -->
+<view class='no-network' wx:if='{{nonet}}'>
+ <image class='bg-img show' src='/image/nonet.png'></image>
+ <text class='fs28 c99 show alic t'>网络不可用，请检查您的网络设置</text>
+ <button class='alic cff btn fs28' >点击刷新</button>
+</view>
+
+<view wx:if='{{!nonet}}'>
+  <!--浮动遥控器， _wid_pro遥控器大小，_left_pro遥控器距离右侧间距，_top_pro/_bottom_pro顶部和底部间距 -->
+    <partremote _wid_pro='55' _left_pro='10' _top_pro='10' _bottom_pro='10'></partremote>
+
+  <!-- tab标签 -->
+  <scroll-view class="tab-bar wp100" scroll-x>
+      <view wx:for="{{tabs}}" data-index="{{index}}" bindtap="changType" data-id="{{item.id}}" class="tab" style='width:33%'>
+      <view class="t {{tabType==item.id?'tab-active':''}}">{{item.title}}</view>
+      </view>
+    </scroll-view>
+
+  <!--搜索框-->
+  <view class='mt80'>
+  <view class='pt36 pb36'><template is="searchRank" data="{{value}}" /></view>
+  <!--直播  -->
+    <view style="display:{{tabType=='1'?'block':'none'}}">
+      <!--海报轮播-->
+      <view class="banner-scroll">
+        <swiper indicator-dots="true" indicator-color='' indicator-active-color class="Bannerswiper" autoplay="false" bindchange='changeTitle'>
+          <block wx:for="{{banners}}" wx:key="picUrl">
+            <swiper-item>
+              <view class="swiper-item">
+                <navigator url="{{item.url}}">
+                  <view class="pic">
+                    <image src="{{item.picUrl}}" mode="aspectFill" class="slide-image" />
+                  </view>
+                </navigator>
+              </view>
+            </swiper-item>
+          </block>
+        </swiper>
+        <view class='fs28 c22 pl20 pt28 lh1'>{{itemTitle}}</view>
+      </view>
+      <!-- 8个icon -->
+      <view class='change-tb-box'>
+        <view wx:for="{{acessTabs}}" class='child'>
+          <navigator url='{{item.url}}' open-type="switchTab">
+            <image src="{{item.picUrl}}"></image>
+            <text>{{item.name}}</text>
+          </navigator>
+        </view>
+      </view>
+      <!--浮动遥控器， _wid_pro遥控器大小，_left_pro遥控器距离右侧间距，_top_pro/_bottom_pro顶部和底部间距 -->
+      <!-- <partremote _wid_pro='55' _left_pro='10' _top_pro='10' _bottom_pro='10'></partremote> -->
+      <!--央视 -->
+      <template is="listtitle" data="{{_title:'央视',_plan:false,url:'../tvlive/tvlive?acessTvName=',openType:'switchTab'}}" />
+      <template is="listzb" data="{{_list:allMyVideo}}" />
+      <!--北京  -->
+      <template is="listtitle" data="{{_title:'北京',_plan:false,url:'../tvlive/tvlive?acessTvName=',openType:'switchTab'}}" />
+      <template is="listzb" data="{{_list:allMyVideo}}" />
+      <!--卫视  -->
+      <template is="listtitle" data="{{_title:'卫视',_plan:false,url:'../tvlive/tvlive?acessTvName=',openType:'switchTab'}}" />
+      <template is="listzb" data="{{_list:allMyVideo}}" />
+      <!--影视  -->
+      <template is="listtitle" data="{{_title:'影视',_plan:false,url:'../tvlive/tvlive?acessTvName=',openType:'switchTab'}}" />
+      <template is="listzb" data="{{_list:allMyVideo}}" />
+      <!--体育  -->
+      <template is="listtitle" data="{{_title:'体育',_plan:false,url:'../tvlive/tvlive?acessTvName=',openType:'switchTab'}}" />
+      <template is="listzb" data="{{_list:allMyVideo}}" />
+      <!--少儿  -->
+      <template is="listtitle" data="{{_title:'少儿',_plan:false,url:'../tvlive/tvlive?acessTvName=',openType:'switchTab'}}" />
+      <template is="listzb" data="{{_list:allMyVideo}}" />
+      <!--娱乐  -->
+      <template is="listtitle" data="{{_title:'娱乐',_plan:false,url:'../tvlive/tvlive?acessTvName=',openType:'switchTab'}}" />
+      <template is="listzb" data="{{_list:allMyVideo}}" />
+    </view>
+
+
+  <!--精选  -->
+    <view style="display:{{tabType=='2'?'block':'none'}}">
+      <!--海报轮播-->
+      <view class="banner-scroll">
+        <swiper indicator-dots="true" indicator-color='' indicator-active-color class="Bannerswiper" autoplay="false" bindchange='changeTitle'>
+          <block wx:for="{{banners}}" wx:key="picUrl">
+            <swiper-item>
+              <view class="swiper-item">
+                <navigator url="{{item.url}}">
+                  <view class="pic">
+                    <image src="{{item.picUrl}}" mode="aspectFill" class="slide-image" />
+                  </view>
+                </navigator>
+              </view>
+            </swiper-item>
+          </block>
+        </swiper>
+        <view class='fs28 c22 pl20 pt28 lh1'>{{itemTitle}}</view>
+      </view>
+      <!--浮动遥控器， _wid_pro遥控器大小，_left_pro遥控器距离右侧间距，_top_pro/_bottom_pro顶部和底部间距 -->
+      <!-- <partremote _wid_pro='55' _left_pro='10' _top_pro='10' _bottom_pro='10'></partremote> -->
+      <!--直播  -->
+      <template is="listtitle" data="{{_title:'直播',_plan:false,url:'',func:'toLive'}}" />
+      <template is="listzb" data="{{_list:allMyVideo,freshFun:'getUlike',iszb:true}}" />
+      <!--回看  -->
+      <template is="listtitle" data="{{_title:'回看',_plan:false,url:'../minor/look_back/look_back',openType:'navigate'}}" />
+      <template is="listzb" data="{{_list:allMyVideo,freshFun:'getUlike',iszb:true}}" />
+      <!--点播  -->
+      <template is="listtitle" data="{{_title:'点播',_plan:false,url:'',func:'toDB'}}" />
+      <template is="listzb" data="{{_list:allMyVideo,freshFun:'getUlike',iszb:true}}" />
+      <!-- 猜你喜欢 -->
+      <template is="listtitle" data="{{_title:'猜你喜欢',_plan:false,url:'',showMore:true}}" />
+      <template is="listzb" data="{{_list:allMyVideo,freshFun:'getUlike',iszb:true}}" />
+    </view>
+
+
+  <!--点播  -->
+    <view style="display:{{tabType=='3'?'block':'none'}}">
+      <!--海报轮播-->
+      <view class="banner-scroll">
+        <swiper indicator-dots="true" indicator-color='' indicator-active-color class="Bannerswiper" autoplay="false" bindchange='changeTitle'>
+          <block wx:for="{{banners}}" wx:key="picUrl">
+            <swiper-item>
+              <view class="swiper-item">
+                <navigator url="{{item.url}}">
+                  <view class="pic">
+                    <image src="{{item.picUrl}}" mode="aspectFill" class="slide-image" />
+                  </view>
+                </navigator>
+              </view>
+            </swiper-item>
+          </block>
+        </swiper>
+        <view class='fs28 c22 pl20 pt28 lh1'>{{itemTitle}}</view>
+      </view>
+      <!-- <partremote _wid_pro='55' _left_pro='10' _top_pro='10' _bottom_pro='10'></partremote> -->
+      <!--抢先首映  -->
+      <template is="listtitle" data="{{_title:'抢先首映',_plan:false,url:''}}" />
+      <template is="listSmalldb" data="{{_list:allMyVideo,iszb:false}}" />
+      <!--华语强档  -->
+      <template is="listtitle" data="{{_title:'华语强档',_plan:false,url:''}}" />
+      <template is="listSmalldb" data="{{_list:allMyVideo,iszb:false}}" />
+      <!--海外专场  -->
+      <template is="listtitle" data="{{_title:'海外专场',_plan:false,url:''}}" />
+      <template is="listSmalldb" data="{{_list:allMyVideo,iszb:false}}" />
+      <!--亿万票房  -->
+      <template is="listtitle" data="{{_title:'亿万票房',_plan:false,url:''}}" />
+      <template is="listSmalldb" data="{{_list:allMyVideo,iszb:false}}" />
+      <!--剧集地  -->
+      <template is="listtitle" data="{{_title:'剧集地',_plan:false,url:''}}" />
+      <template is="listSmalldb" data="{{_list:allMyVideo,iszb:false}}" />
+    </view>
+
+
+
+
+
+
+    <!-- <partremote _wid_pro='55' _left_pro='' _top_pro='' _bottom_pro=''></partremote> -->
+
+    <!--浮动遥控器， _wid_pro遥控器大小，_left_pro遥控器距离右侧间距，_top_pro/_bottom_pro顶部和底部间距 -->
+    <!-- <partremote _wid_pro='55' _left_pro='10' _top_pro='10' _bottom_pro='10'></partremote> -->
+
+    <!--列表页-->
+    <!--热播排行-->
+    <!-- <template is="listtitle" data="{{url:'../minor/zblist/zblist?tag=正在热播',_title:'正在热播'}}" />
+    <template is="listSmall" data="{{_list:hotLive}}" /> -->
+
+    <!--热播排行-->
+    <!-- <template is="listtitle" data="{{url:'../minor/hotlist/hotlist?tag=热播排行',_title:'热播排行'}}" />
+    <template is="listSmall" data="{{_list:hotVideo}}" /> -->
+
+    <!-- 最新上线 -->
+    <!-- <template is="listtitle" data="{{url:'../minor/newlist/newlist?tag=最新上线',_title:'最新上线'}}" />
+    <template is="listSmall" data="{{_list:videoReserve}}" /> -->
+    <!-- 猜你喜欢 -->
+    <!-- <template is="listtitle" data="{{_title:'猜你喜欢',_plan:'true'}}" />
+    <template is="listSmall" data="{{_list:allMyVideo}}" /> -->
+  </view>
+
+</view>
+
+
